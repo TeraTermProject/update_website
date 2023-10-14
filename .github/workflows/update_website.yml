@@ -1,0 +1,21 @@
+﻿name: bulid
+
+on:
+  push:
+  workflow_dispatch:
+
+env:
+  RETENTION_DAYS: 3
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Run script
+        run: bash ./update_website.sh
+        env:
+          GIT_REPOSITORY: ${{ secrets.GIT_REPOSITORY }}
+          GIT_USER_NAME: ${{ vars.GIT_USER_NAME }}
+          GIT_USER_EMAIL: ${{ vars.GIT_USER_EMAIL }}
