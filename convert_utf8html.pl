@@ -57,7 +57,7 @@ if ($enc eq "utf-8") {
 my @lines = split /\n/, $content;
 
 my $fh;
-open($fh, ">:encoding(utf8)", $file);
+open($fh, ">:unix:encoding(utf8)", $file) or die("error :$! $file");
 print $fh "\x{feff}" ;  # add BOM
 foreach my $line (@lines) {
 	$line =~ s/[\r\n]+$//;
