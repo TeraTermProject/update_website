@@ -1,8 +1,9 @@
 
 #URL=git@github.com:TeraTermProject/TeraTermProject.github.io.git
 URL=${GIT_REPOSITORY}
-SRC_URL=https://github.com/TeraTermProject/teraterm-mirror-gitsvn.git
-SRC=teraterm-mirror-gitsvn
+#SRC_URL=https://github.com/TeraTermProject/teraterm-mirror-gitsvn.git
+SRC_URL=https://github.com/TeraTermProject/teraterm.git
+SRC=teraterm
 DIST=github_io
 
 if [ -z "$URL" ]; then
