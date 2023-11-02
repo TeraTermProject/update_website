@@ -15,21 +15,25 @@ rm -rf $DIST
 git clone $URL $DIST
 (cd $DIST ; ls | egrep -v '^$DIST/.git$' | xargs rm -rf)
 
-# trunk
+# main
 rm -rf $SRC
-git clone --branch trunk --depth 1 ${SRC_URL} $SRC
+git clone --branch main --depth 1 ${SRC_URL} $SRC
 
+## /
 cp -r $SRC/doc/web/* $DIST
 cp $DIST/index.html.ja $DIST/index.html
+
+## manual
 mkdir $DIST/manual/5/en
 cp -r $SRC/doc/en/html/* $DIST/manual/5/en
 mkdir $DIST/manual/5/ja
 cp -r $SRC/doc/ja/html/* $DIST/manual/5/ja
 
-# 4-stable/manual
+# 4-stable
 rm -rf $SRC
 git clone --branch 4-stable --depth 1 ${SRC_URL} $SRC
 
+## manual
 mkdir $DIST/manual/4/en
 cp -r $SRC/doc/en/html/* $DIST/manual/4/en
 mkdir $DIST/manual/4/ja
