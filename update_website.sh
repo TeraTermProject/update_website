@@ -1,7 +1,5 @@
 
-#URL=git@github.com:TeraTermProject/TeraTermProject.github.io.git
 URL=${GIT_REPOSITORY}
-#SRC_URL=https://github.com/TeraTermProject/teraterm-mirror-gitsvn.git
 SRC_URL=https://github.com/TeraTermProject/teraterm.git
 SRC=teraterm
 DIST=github_io
@@ -46,8 +44,17 @@ find $DIST/manual -name "*.html" -exec perl convert_utf8html.pl {} \;
 pushd $DIST
 git config --local user.name ${GIT_USER_NAME}
 git config --local user.email ${GIT_EMAIL_NAME}
-git rm `git ls-files --deleted`
+
+# remove deleted files from repository
+del_file_count=`git ls-files --deleted | wc -l`
+if [ $del_file_count -ne 0 ]; then
+	echo git rm `git ls-files --deleted`
+	git ls-files --deleted -z | xargs -0 git rm
+fi
+
+# add new file to repository
 git add .
+
 git commit -m "update"
 git push
 popd
