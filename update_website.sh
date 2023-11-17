@@ -19,7 +19,7 @@ git clone --branch main --depth 1 ${SRC_URL} $SRC
 
 ## /
 cp -r $SRC/doc/web/* $DIST
-cp $DIST/index.html.ja $DIST/index.html
+# cp $DIST/index.html.ja $DIST/index.html
 
 ## manual
 mkdir $DIST/manual/5/en
