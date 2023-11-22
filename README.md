@@ -9,3 +9,7 @@ export GIT_USER_NAME=zmatsuo
 export GIT_USER_EMAIL=6488847+zmatsuo@users.noreply.github.com
 bash update_website.sh
 ```
+
+## 追加ファイル
+
+add/ フォルダにファイルを置くと、webサイトにファイルが追加される

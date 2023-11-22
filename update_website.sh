@@ -40,6 +40,11 @@ cp -r $SRC/doc/ja/html/* $DIST/manual/4/ja
 # convert UTF-8 html
 find $DIST/manual -name "*.html" -exec perl convert_utf8html.pl {} \;
 
+# additional files
+rm $DIST/manual/5/en/reference/.gitignore
+rm $DIST/manual/5/ja/reference/.gitignore
+(cd add;  cp -r . ../$DIST/)
+
 # push $DIST
 pushd $DIST
 git config --local user.name ${GIT_USER_NAME}
