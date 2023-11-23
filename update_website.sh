@@ -1,7 +1,8 @@
 
 URL=${GIT_REPOSITORY}
-SRC_URL=https://github.com/TeraTermProject/teraterm.git
-SRC=teraterm
+SRC_URL_WEB=https://github.com/TeraTermProject/web.git
+SRC_URL_TT=https://github.com/TeraTermProject/teraterm.git
+SRC=web
 DIST=github_io
 
 if [ -z "$URL" ]; then
@@ -13,25 +14,25 @@ rm -rf $DIST
 git clone $URL $DIST
 (cd $DIST ; ls | egrep -v '^$DIST/.git$' | xargs rm -rf)
 
-# main
+# /
 rm -rf $SRC
-git clone --branch main --depth 1 ${SRC_URL} $SRC
+git clone --branch main --depth 1 ${SRC_URL_WEB} $SRC
+rm -rf $SRC/.git
+cp -r $SRC/* $DIST
 
-## /
-cp -r $SRC/doc/web/* $DIST
-# cp $DIST/index.html.ja $DIST/index.html
+# manual/5
+rm -rf $SRC
+git clone --branch main --depth 1 ${SRC_URL_TT} $SRC
 
-## manual
 mkdir $DIST/manual/5/en
 cp -r $SRC/doc/en/html/* $DIST/manual/5/en
 mkdir $DIST/manual/5/ja
 cp -r $SRC/doc/ja/html/* $DIST/manual/5/ja
 
-# 4-stable
+# manual/4-stable
 rm -rf $SRC
-git clone --branch 4-stable --depth 1 ${SRC_URL} $SRC
+git clone --branch 4-stable --depth 1 ${SRC_URL_TT} $SRC
 
-## manual
 mkdir $DIST/manual/4/en
 cp -r $SRC/doc/en/html/* $DIST/manual/4/en
 mkdir $DIST/manual/4/ja
