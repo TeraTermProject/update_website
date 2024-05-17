@@ -9,6 +9,8 @@ if [ -z "$URL" ]; then
 	echo GIT_REPOSITORY is empty
 	exit 1;
 fi
+echo GIT_USER_NAME=${GIT_USER_NAME}
+echo GIT_USER_EMAIL=${GIT_USER_EMAIL}
 
 rm -rf $DIST
 git clone $URL $DIST
@@ -49,7 +51,7 @@ rm $DIST/manual/5/ja/reference/.gitignore
 # push $DIST
 pushd $DIST
 git config --local user.name ${GIT_USER_NAME}
-git config --local user.email ${GIT_EMAIL_NAME}
+git config --local user.email ${GIT_USER_EMAIL}
 
 # remove deleted files from repository
 del_file_count=`git ls-files --deleted | wc -l`
